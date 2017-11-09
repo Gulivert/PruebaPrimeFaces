@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="UsuariosEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditUsuariosTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:UsuariosListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="UsuariosEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{usuariosController.selected != null}">
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditUsuariosLabel_id}" for="id" />
+                            <h:outputText id="id" value="#{usuariosController.selected.id}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditUsuariosLabel_usuario}" for="usuario" />
+                            <p:inputText id="usuario" value="#{usuariosController.selected.usuario}" title="#{myBundle.EditUsuariosTitle_usuario}" size="45" maxlength="45"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditUsuariosLabel_password}" for="password" />
+                            <p:inputText id="password" value="#{usuariosController.selected.password}" title="#{myBundle.EditUsuariosTitle_password}" size="45" maxlength="45"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditUsuariosLabel_nombre}" for="nombre" />
+                            <p:inputText id="nombre" value="#{usuariosController.selected.nombre}" title="#{myBundle.EditUsuariosTitle_nombre}" size="128" maxlength="128"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditUsuariosLabel_apellido1}" for="apellido1" />
+                            <p:inputText id="apellido1" value="#{usuariosController.selected.apellido1}" title="#{myBundle.EditUsuariosTitle_apellido1}" size="128" maxlength="128"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditUsuariosLabel_apellido2}" for="apellido2" />
+                            <p:inputText id="apellido2" value="#{usuariosController.selected.apellido2}" title="#{myBundle.EditUsuariosTitle_apellido2}" size="128" maxlength="128"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditUsuariosLabel_sexo}" for="sexo" />
+                            <p:inputText id="sexo" value="#{usuariosController.selected.sexo}" title="#{myBundle.EditUsuariosTitle_sexo}" size="1" maxlength="1"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditUsuariosLabel_telefono}" for="telefono" />
+                            <p:inputText id="telefono" value="#{usuariosController.selected.telefono}" title="#{myBundle.EditUsuariosTitle_telefono}" size="128" maxlength="128"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditUsuariosLabel_correo}" for="correo" />
+                            <p:inputText id="correo" value="#{usuariosController.selected.correo}" title="#{myBundle.EditUsuariosTitle_correo}" size="128" maxlength="128"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditUsuariosLabel_esAdministrador}" for="esAdministrador" />
+                            <p:inputText id="esAdministrador" value="#{usuariosController.selected.esAdministrador}" title="#{myBundle.EditUsuariosTitle_esAdministrador}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{usuariosController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:UsuariosListPage:UsuariosListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:UsuariosListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

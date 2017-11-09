@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="UsuariosViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewUsuariosTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:UsuariosListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="UsuariosViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{usuariosController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewUsuariosLabel_id}"/>
+                            <h:outputText value="#{usuariosController.selected.id}" title="#{myBundle.ViewUsuariosTitle_id}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewUsuariosLabel_usuario}"/>
+                            <h:outputText value="#{usuariosController.selected.usuario}" title="#{myBundle.ViewUsuariosTitle_usuario}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewUsuariosLabel_password}"/>
+                            <h:outputText value="#{usuariosController.selected.password}" title="#{myBundle.ViewUsuariosTitle_password}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewUsuariosLabel_nombre}"/>
+                            <h:outputText value="#{usuariosController.selected.nombre}" title="#{myBundle.ViewUsuariosTitle_nombre}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewUsuariosLabel_apellido1}"/>
+                            <h:outputText value="#{usuariosController.selected.apellido1}" title="#{myBundle.ViewUsuariosTitle_apellido1}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewUsuariosLabel_apellido2}"/>
+                            <h:outputText value="#{usuariosController.selected.apellido2}" title="#{myBundle.ViewUsuariosTitle_apellido2}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewUsuariosLabel_sexo}"/>
+                            <h:outputText value="#{usuariosController.selected.sexo}" title="#{myBundle.ViewUsuariosTitle_sexo}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewUsuariosLabel_telefono}"/>
+                            <h:outputText value="#{usuariosController.selected.telefono}" title="#{myBundle.ViewUsuariosTitle_telefono}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewUsuariosLabel_correo}"/>
+                            <h:outputText value="#{usuariosController.selected.correo}" title="#{myBundle.ViewUsuariosTitle_correo}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewUsuariosLabel_esAdministrador}"/>
+                            <h:outputText value="#{usuariosController.selected.esAdministrador}" title="#{myBundle.ViewUsuariosTitle_esAdministrador}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>
