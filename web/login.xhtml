@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/WEB-INF/include/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{myBundle.LoginName}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+
+            <p:growl id="mensajes" showDetail="true" life="2000" />
+            <h:form>
+                <p:panel header="Login" style="width:300px; margin: 100px auto">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputLabel for="username" value="Usuario:" />
+                        <p:inputText value="#{loginController.nombre}" id="username"
+                                     required="true" label="username" />
+                        <h:outputLabel for="password" value="Clave:" />
+                        <p:password value="#{loginController.clave}" id="password" required="true"
+                                    label="password" />
+                        <f:facet name="footer">
+                            <p:commandButton id="loginButton" value="Login"
+                                             actionListener="#{loginController.login}" update=":mensajes"
+                                             oncomplete="manejarLogin(xhr, status, args)" />
+                        </f:facet>
+                    </h:panelGrid>
+                </p:panel>
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+    <script type="text/javascript">
+        //<![CDATA[
+        function manejarLogin(xhr, status, args) {
+            if (!args.validationFailed && args.estaLogeado) {
+                setTimeout(function () {
+                    window.location = args.view;
+                }, 500);
+            }
+        }
+//]]>
+    </script>
+
+</html>

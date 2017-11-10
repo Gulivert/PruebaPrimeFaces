@@ -4,7 +4,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/guill/OneDrive/Documents/NetBeansProjects/Prueba/web/index.xhtml</file>
-            <file>file:/C:/Users/guill/OneDrive/Documents/NetBeansProjects/Prueba/web/welcomePrimefaces.xhtml</file>
+            <file>file:/C:/Users/guill/OneDrive/Documents/NetBeansProjects/Prueba/src/java/com/metadata/controller/UsuariosController.java</file>
+            <file>file:/C:/Users/guill/OneDrive/Documents/NetBeansProjects/Prueba/web/WEB-INF/include/template.xhtml</file>
+            <file>file:/C:/Users/guill/OneDrive/Documents/NetBeansProjects/Prueba/src/java/com/metadata/converter/UsuariosConverter.java</file>
+            <file>file:/C:/Users/guill/OneDrive/Documents/NetBeansProjects/Prueba/src/java/com/metadata/controller/LoginController.java</file>
+            <file>file:/C:/Users/guill/OneDrive/Documents/NetBeansProjects/Prueba/web/WEB-INF/include/appmenu.xhtml</file>
+            <file>file:/C:/Users/guill/OneDrive/Documents/NetBeansProjects/Prueba/src/java/MyBundle.properties</file>
+            <file>file:/C:/Users/guill/OneDrive/Documents/NetBeansProjects/Prueba/web/login.xhtml</file>
+            <file>file:/C:/Users/guill/OneDrive/Documents/NetBeansProjects/Prueba/web/WEB-INF/include/entity/usuarios/List.xhtml</file>
         </group>
     </open-files>
 </project-private>
