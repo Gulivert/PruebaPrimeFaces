@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PeliculasCreateDlg" widgetVar="PeliculasCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreatePeliculasTitle}" closeOnEscape="true">
+
+            <h:form id="PeliculasCreateForm">
+
+                <h:panelGroup id="display" rendered="#{peliculasController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreatePeliculasLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{peliculasController.selected.nombre}" title="#{myBundle.CreatePeliculasTitle_nombre}" size="128" maxlength="128"/>
+
+                        <p:outputLabel value="#{myBundle.CreatePeliculasLabel_descripcion}" for="descripcion" />
+                        <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{peliculasController.selected.descripcion}" title="#{myBundle.CreatePeliculasTitle_descripcion}" />
+
+                        <p:outputLabel value="#{myBundle.CreatePeliculasLabel_fechaVisualizacion}" for="fechaVisualizacion" />
+                        <p:calendar id="fechaVisualizacion" pattern="MM/dd/yyyy" value="#{peliculasController.selected.fechaVisualizacion}" title="#{myBundle.CreatePeliculasTitle_fechaVisualizacion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreatePeliculasLabel_nota}" for="nota" />
+                        <p:inputText id="nota" value="#{peliculasController.selected.nota}" title="#{myBundle.CreatePeliculasTitle_nota}"/>
+
+                        <p:outputLabel value="#{myBundle.CreatePeliculasLabel_nombreGenero}" for="idGenero" />
+                        <p:selectOneMenu id="idGenero" value="#{peliculasController.selected.idGenero}" required="true" requiredMessage="#{myBundle.CreatePeliculasRequiredMessage_idGenero}" converter="generoConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{generoController.items}"
+                                           var="idGeneroItem"
+                                           itemValue="#{idGeneroItem}"
+                                           itemLabel="#{idGeneroItem.nombre}"
+                                           />
+                        </p:selectOneMenu>
+
+                        <p:outputLabel rendered="#{loginController.user.esAdministrador == 1}"  value="#{myBundle.CreatePeliculasLabel_nombreUsuario}" for="idUsuario" />
+                        <p:selectOneMenu rendered="#{loginController.user.esAdministrador == 1}"  id="idUsuario" value="#{peliculasController.selected.idUsuario}" required="true" requiredMessage="#{myBundle.CreatePeliculasRequiredMessage_idUsuario}" converter="usuariosConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{usuariosController.items}"
+                                           var="idUsuarioItem"
+                                           itemValue="#{idUsuarioItem}"
+                                           itemLabel="#{idUsuarioItem.nombre}"
+                                           />
+
+                        </p:selectOneMenu>
+                        
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{peliculasController.saveNew}" value="#{myBundle.Save}" update="display,:PeliculasListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PeliculasCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('PeliculasCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

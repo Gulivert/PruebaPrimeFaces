@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PeliculasViewDlg" widgetVar="PeliculasViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewPeliculasTitle}" closeOnEscape="true">
+
+            <h:form id="PeliculasViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{peliculasController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewPeliculasLabel_idPelicula}"/>
+                        <h:outputText value="#{peliculasController.selected.idPelicula}" title="#{myBundle.ViewPeliculasTitle_idPelicula}"/>
+
+                        <h:outputText value="#{myBundle.ViewPeliculasLabel_nombre}"/>
+                        <h:outputText value="#{peliculasController.selected.nombre}" title="#{myBundle.ViewPeliculasTitle_nombre}"/>
+
+                        <h:outputText value="#{myBundle.ViewPeliculasLabel_descripcion}"/>
+                        <h:outputText value="#{peliculasController.selected.descripcion}" title="#{myBundle.ViewPeliculasTitle_descripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewPeliculasLabel_fechaVisualizacion}"/>
+                        <h:outputText value="#{peliculasController.selected.fechaVisualizacion}" title="#{myBundle.ViewPeliculasTitle_fechaVisualizacion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewPeliculasLabel_nota}"/>
+                        <h:outputText value="#{peliculasController.selected.nota}" title="#{myBundle.ViewPeliculasTitle_nota}"/>
+
+                        <h:outputText value="#{myBundle.ViewPeliculasLabel_idGenero}"/>
+                        <h:outputText value="#{peliculasController.selected.idGenero.idGenero}"/>
+
+                        <h:outputText value="#{myBundle.ViewPeliculasLabel_idUsuario}"/>
+                        <h:outputText value="#{peliculasController.selected.idUsuario.id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('PeliculasViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

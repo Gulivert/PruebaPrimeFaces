@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="PeliculasEditDlg" widgetVar="PeliculasEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditPeliculasTitle}" closeOnEscape="true">
+
+            <h:form id="PeliculasEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{peliculasController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditPeliculasLabel_idPelicula}" for="idPelicula" />
+                        <h:outputText id="idPelicula" value="#{peliculasController.selected.idPelicula}" />
+
+                        <p:outputLabel value="#{myBundle.EditPeliculasLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{peliculasController.selected.nombre}" title="#{myBundle.EditPeliculasTitle_nombre}" size="128" maxlength="128"/>
+
+                        <p:outputLabel value="#{myBundle.EditPeliculasLabel_descripcion}" for="descripcion" />
+                        <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{peliculasController.selected.descripcion}" title="#{myBundle.EditPeliculasTitle_descripcion}" />
+
+                        <p:outputLabel value="#{myBundle.EditPeliculasLabel_fechaVisualizacion}" for="fechaVisualizacion" />
+                        <p:calendar id="fechaVisualizacion" pattern="MM/dd/yyyy" value="#{peliculasController.selected.fechaVisualizacion}" title="#{myBundle.EditPeliculasTitle_fechaVisualizacion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditPeliculasLabel_nota}" for="nota" />
+                        <p:inputText id="nota" value="#{peliculasController.selected.nota}" title="#{myBundle.EditPeliculasTitle_nota}"/>
+
+                        <p:outputLabel value="#{myBundle.EditPeliculasLabel_nombreGenero}" for="idGenero" />
+                        <p:selectOneMenu id="idGenero" value="#{peliculasController.selected.idGenero}" required="true" requiredMessage="#{myBundle.EditPeliculasRequiredMessage_idGenero}" converter="generoConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{generoController.items}"
+                                           var="idGeneroItem"
+                                           itemValue="#{idGeneroItem}"
+                                           itemLabel="#{idGeneroItem.nombre}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.EditPeliculasLabel_nombreUsuario}" for="idUsuario" />
+                        <p:selectOneMenu id="idUsuario" value="#{peliculasController.selected.idUsuario}" required="true" requiredMessage="#{myBundle.EditPeliculasRequiredMessage_idUsuario}" converter="usuariosConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{usuariosController.items}"
+                                           var="idUsuarioItem"
+                                           itemValue="#{idUsuarioItem}"
+                                           itemLabel="#{idUsuarioItem.nombre}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{peliculasController.save}" value="#{myBundle.Save}" update="display,:PeliculasListForm:datalist,:PeliculasListForm:PeliculasDataTableContextMenu,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PeliculasEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('PeliculasEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
