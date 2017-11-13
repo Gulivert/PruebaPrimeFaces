@@ -15,6 +15,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import com.metadata.prueba.Peliculas;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -49,5 +52,15 @@ public class UsuariosFacade extends AbstractFacade<Usuarios> {
         peliculasCollection.size();
         return peliculasCollection;
     }
-    
+
+    public Usuarios findByLogin(String user, String pass) {
+        Map<String, Object> condiciones = new HashMap<>();
+        condiciones.put("usuario", user);
+        condiciones.put("password", pass);
+        List<Usuarios> usuarios = findExactRange(-1, -1, null, condiciones);
+        if(usuarios.isEmpty())
+            return null;
+        return usuarios.get(0);
+    }
+
 }

@@ -61,7 +61,7 @@ public class Peliculas implements Serializable {
     @JoinColumn(name = "id_usuario", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Usuarios idUsuario;
-
+    
     public Peliculas() {
     }
 
@@ -118,6 +118,7 @@ public class Peliculas implements Serializable {
     }
 
     public Usuarios getIdUsuario() {
+        
         return idUsuario;
     }
 

@@ -45,7 +45,9 @@ public abstract class AbstractFacade<T> {
 
     public List<T> findAll() {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+
         cq.select(cq.from(entityClass));
+
         return getEntityManager().createQuery(cq).getResultList();
     }
 
@@ -86,8 +88,12 @@ public abstract class AbstractFacade<T> {
             }
         }
         javax.persistence.Query q = getEntityManager().createQuery(cq);
-        q.setMaxResults(pageSize);
-        q.setFirstResult(first);
+        if (pageSize >= 0) {
+            q.setMaxResults(pageSize);
+        }
+        if (first >= 0) {
+            q.setFirstResult(first);
+        }
         return q.getResultList();
     }
 
@@ -114,8 +120,44 @@ public abstract class AbstractFacade<T> {
             }
         }
         javax.persistence.Query q = getEntityManager().createQuery(cq);
-        q.setMaxResults(pageSize);
-        q.setFirstResult(first);
+        if (pageSize >= 0) {
+            q.setMaxResults(pageSize);
+        }
+        if (first >= 0) {
+            q.setFirstResult(first);
+        }
+        return q.getResultList();
+    }
+
+    public List<T> findExactRange(int first, int pageSize, Map<String, String> sortFields, Map<String, Object> filters) {
+        javax.persistence.criteria.CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+        javax.persistence.criteria.CriteriaQuery cq = cb.createQuery();
+        javax.persistence.criteria.Root<T> entityRoot = cq.from(entityClass);
+        cq.select(entityRoot);
+        List<javax.persistence.criteria.Predicate> predicates = getExactPredicates(cb, entityRoot, filters);
+        if (predicates.size() > 0) {
+            cq.where(predicates.toArray(new javax.persistence.criteria.Predicate[]{}));
+        }
+        if (sortFields != null && !sortFields.isEmpty()) {
+            for (String sortField : sortFields.keySet()) {
+                if (entityRoot.get(sortField) != null) {
+                    String sortOrder = sortFields.get(sortField);
+                    if (sortOrder.startsWith("ASC")) {
+                        cq.orderBy(cb.asc(entityRoot.get(sortField)));
+                    }
+                    if (sortOrder.startsWith("DESC")) {
+                        cq.orderBy(cb.desc(entityRoot.get(sortField)));
+                    }
+                }
+            }
+        }
+        javax.persistence.Query q = getEntityManager().createQuery(cq);
+        if (pageSize >= 0) {
+            q.setMaxResults(pageSize);
+        }
+        if (first >= 0) {
+            q.setFirstResult(first);
+        }
         return q.getResultList();
     }
 
@@ -156,6 +198,47 @@ public abstract class AbstractFacade<T> {
                     predicates.add(cb.like((javax.persistence.criteria.Expression) pkFieldPath, filters.get(s) + "%"));
                 } else {
                     javax.persistence.criteria.Expression<?> filterExpression = getCastExpression((String) filters.get(s), fieldTypeName, cb);
+                    if (filterExpression != null) {
+                        predicates.add(cb.equal((javax.persistence.criteria.Expression<?>) pkFieldPath, filterExpression));
+                    } else {
+                        predicates.add(cb.equal((javax.persistence.criteria.Expression<?>) pkFieldPath, filters.get(s)));
+                    }
+                }
+            }
+        }
+        return predicates;
+    }
+
+    private List<Predicate> getExactPredicates(CriteriaBuilder cb, Root<T> entityRoot, Map<String, Object> filters) {
+        javax.persistence.metamodel.Metamodel entityModel = this.getEntityManager().getMetamodel();
+        javax.persistence.metamodel.ManagedType<T> entityType = entityModel.managedType(entityClass);
+        java.util.Set<javax.persistence.metamodel.EmbeddableType<?>> embeddables = entityModel.getEmbeddables();
+        String fieldTypeName = null;
+        // Add predicates (WHERE clauses) based on filters map
+        List<javax.persistence.criteria.Predicate> predicates = new java.util.ArrayList<>();
+        for (String s : filters.keySet()) {
+            javax.persistence.criteria.Path<Object> pkFieldPath = null;
+            if (s.contains(".")) {
+                String embeddedIdField = s.split("\\.")[0];
+                String embeddedIdMember = s.split("\\.")[1];
+                pkFieldPath = entityRoot.get(embeddedIdField).get(embeddedIdMember);
+                javax.persistence.metamodel.EmbeddableType<?> embeddableType = entityModel.embeddable(entityType.getAttribute(embeddedIdField).getJavaType());
+                fieldTypeName = embeddableType.getAttribute(embeddedIdMember).getJavaType().getName();
+            } else {
+                pkFieldPath = entityRoot.get(s);
+                fieldTypeName = entityType.getAttribute(s).getJavaType().getName();
+            }
+            if (pkFieldPath != null && fieldTypeName != null) {
+                if (fieldTypeName.contains("String")) {
+                    predicates.add(cb.like((javax.persistence.criteria.Expression) pkFieldPath, filters.get(s).toString()));
+                } else {
+                    
+                    javax.persistence.criteria.Expression<?> filterExpression;
+                    if (filters.get(s) instanceof Object) {
+                        filterExpression = cb.literal(filters.get(s));
+                    } else {
+                        filterExpression = getCastExpression((String) filters.get(s), fieldTypeName, cb);
+                    }
                     if (filterExpression != null) {
                         predicates.add(cb.equal((javax.persistence.criteria.Expression<?>) pkFieldPath, filterExpression));
                     } else {
@@ -212,5 +295,5 @@ public abstract class AbstractFacade<T> {
     public T findWithParents(T entity) {
         return entity;
     }
-    
+
 }

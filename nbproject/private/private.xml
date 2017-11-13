@@ -5,13 +5,16 @@
         <group>
             <file>file:/C:/Users/guill/OneDrive/Documents/NetBeansProjects/Prueba/web/index.xhtml</file>
             <file>file:/C:/Users/guill/OneDrive/Documents/NetBeansProjects/Prueba/src/java/com/metadata/controller/UsuariosController.java</file>
-            <file>file:/C:/Users/guill/OneDrive/Documents/NetBeansProjects/Prueba/web/WEB-INF/include/template.xhtml</file>
+            <file>file:/C:/Users/guill/OneDrive/Documents/NetBeansProjects/Prueba/src/java/com/metadata/facade/UsuariosFacade.java</file>
+            <file>file:/C:/Users/guill/OneDrive/Documents/NetBeansProjects/Prueba/src/java/com/metadata/facade/AbstractFacade.java</file>
+            <file>file:/C:/Users/guill/OneDrive/Documents/NetBeansProjects/Prueba/web/WEB-INF/include/entity/usuarios/Edit.xhtml</file>
             <file>file:/C:/Users/guill/OneDrive/Documents/NetBeansProjects/Prueba/src/java/com/metadata/converter/UsuariosConverter.java</file>
+            <file>file:/C:/Users/guill/OneDrive/Documents/NetBeansProjects/Prueba/web/WEB-INF/include/entity/usuarios/Create.xhtml</file>
+            <file>file:/C:/Users/guill/OneDrive/Documents/NetBeansProjects/Prueba/src/java/com/metadata/controller/AbstractController.java</file>
             <file>file:/C:/Users/guill/OneDrive/Documents/NetBeansProjects/Prueba/src/java/com/metadata/controller/LoginController.java</file>
             <file>file:/C:/Users/guill/OneDrive/Documents/NetBeansProjects/Prueba/web/WEB-INF/include/appmenu.xhtml</file>
-            <file>file:/C:/Users/guill/OneDrive/Documents/NetBeansProjects/Prueba/src/java/MyBundle.properties</file>
             <file>file:/C:/Users/guill/OneDrive/Documents/NetBeansProjects/Prueba/web/login.xhtml</file>
-            <file>file:/C:/Users/guill/OneDrive/Documents/NetBeansProjects/Prueba/web/WEB-INF/include/entity/usuarios/List.xhtml</file>
+            <file>file:/C:/Users/guill/OneDrive/Documents/NetBeansProjects/Prueba/src/java/MyBundle.properties</file>
         </group>
     </open-files>
 </project-private>

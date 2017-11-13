@@ -24,8 +24,7 @@
                                     label="password" />
                         <f:facet name="footer">
                             <p:commandButton id="loginButton" value="Login"
-                                             actionListener="#{loginController.login}" update=":mensajes"
-                                             oncomplete="manejarLogin(xhr, status, args)" />
+                                             actionListener="#{loginController.login}" update=":mensajes"/>
                         </f:facet>
                     </h:panelGrid>
                 </p:panel>
@@ -33,17 +32,5 @@
         </ui:define>
 
     </ui:composition>
-
-    <script type="text/javascript">
-        //<![CDATA[
-        function manejarLogin(xhr, status, args) {
-            if (!args.validationFailed && args.estaLogeado) {
-                setTimeout(function () {
-                    window.location = args.view;
-                }, 500);
-            }
-        }
-//]]>
-    </script>
 
 </html>
