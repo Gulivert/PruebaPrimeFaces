@@ -23,6 +23,7 @@
                          lazy="false"
                          rowKey="#{item.idPelicula}"
                          var="item"
+                         widgetVar="tablaPeliculas"
                          paginator="true"
                          rows="10"
                          rowsPerPageTemplate="10,20,30,40,50"
@@ -86,28 +87,39 @@
                 </p:column>
 
 
-                <p:column sortBy="#{item.idGenero.idGenero}" filterBy="#{item.idGenero.nombre}">
+                <p:column sortBy="#{item.idGenero.nombre}" filterBy="#{item.idGenero.nombre}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListPeliculasTitle_nombreGenero}"/>
                     </f:facet>
-                    
+                    <f:facet name="filter">
+                        <p:selectOneMenu onchange="PF('tablaPeliculas').filter()" >
+                            <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true" />
+                            <f:selectItems value="#{peliculasController.generos}" />
+                        </p:selectOneMenu>
+                    </f:facet>
                     <h:outputText value="#{item.idGenero.nombre}"/>
                 </p:column>
 
                 <p:column rendered="#{(loginController.user == null) or ((loginController.user != null) and (loginController.user.esAdministrador == 1))}" 
-                          sortBy="#{item.idUsuario.id}" filterBy="#{item.idUsuario.nombre}">
+                          sortBy="#{item.idUsuario.nombre}" filterBy="#{item.idUsuario.nombre}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListPeliculasTitle_nombreUsuario}"/>
+                    </f:facet>
+                    <f:facet name="filter">
+                        <p:selectOneMenu onchange="PF('tablaPeliculas').filter()" >
+                            <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true" />
+                            <f:selectItems value="#{peliculasController.usuarios}" />
+                        </p:selectOneMenu>
                     </f:facet>
                     <h:outputText value="#{item.idUsuario.nombre}"/>
                 </p:column>
 
             </p:dataTable>
 
-            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{peliculasController.prepareCreate}" update=":PeliculasCreateForm" oncomplete="PF('PeliculasCreateDialog').show()"/>
-            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":PeliculasViewForm" oncomplete="PF('PeliculasViewDialog').show()" disabled="#{empty peliculasController.selected}"/>
-            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":PeliculasEditForm" oncomplete="PF('PeliculasEditDialog').show()" disabled="#{empty peliculasController.selected}"/>
-            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{peliculasController.delete}" update=":growl,datalist" disabled="#{empty peliculasController.selected}">
+            <p:commandButton  id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{peliculasController.prepareCreate}" update=":PeliculasCreateForm" oncomplete="PF('PeliculasCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":PeliculasViewForm" oncomplete="PF('PeliculasViewDialog').show()" disabled="#{empty peliculasController.selected}"/>
+            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":PeliculasEditForm" oncomplete="PF('PeliculasEditDialog').show()" disabled="#{empty peliculasController.selected}"/>
+            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{peliculasController.delete}" update=":growl,datalist" disabled="#{empty peliculasController.selected}">
                 <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 

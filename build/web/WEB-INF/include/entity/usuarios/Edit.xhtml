@@ -14,10 +14,6 @@
                 <h:panelGroup id="display">
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{usuariosController.selected != null}">
 
-
-                        <h:outputLabel value="#{myBundle.EditUsuariosLabel_id}" for="id" />
-                        <h:outputText id="id" value="#{usuariosController.selected.id}" />
-
                         <p:outputLabel value="#{myBundle.EditUsuariosLabel_usuario}" for="usuario" />
                         <p:inputText id="usuario" value="#{usuariosController.selected.usuario}" title="#{myBundle.EditUsuariosTitle_usuario}" size="45" maxlength="45"/>
 
@@ -25,22 +21,22 @@
                         <p:inputText id="password" value="#{usuariosController.selected.password}" title="#{myBundle.EditUsuariosTitle_password}" size="45" maxlength="45"/>
 
                         <p:outputLabel value="#{myBundle.EditUsuariosLabel_nombre}" for="nombre" />
-                        <p:inputText id="nombre" value="#{usuariosController.selected.nombre}" title="#{myBundle.EditUsuariosTitle_nombre}" size="128" maxlength="128"/>
+                        <p:inputText id="nombre" value="#{usuariosController.selected.nombre}" title="#{myBundle.EditUsuariosTitle_nombre}" size="45" maxlength="45"/>
 
                         <p:outputLabel value="#{myBundle.EditUsuariosLabel_apellido1}" for="apellido1" />
-                        <p:inputText id="apellido1" value="#{usuariosController.selected.apellido1}" title="#{myBundle.EditUsuariosTitle_apellido1}" size="128" maxlength="128"/>
+                        <p:inputText id="apellido1" value="#{usuariosController.selected.apellido1}" title="#{myBundle.EditUsuariosTitle_apellido1}" size="45" maxlength="45"/>
 
                         <p:outputLabel value="#{myBundle.EditUsuariosLabel_apellido2}" for="apellido2" />
-                        <p:inputText id="apellido2" value="#{usuariosController.selected.apellido2}" title="#{myBundle.EditUsuariosTitle_apellido2}" size="128" maxlength="128"/>
+                        <p:inputText id="apellido2" value="#{usuariosController.selected.apellido2}" title="#{myBundle.EditUsuariosTitle_apellido2}" size="45" maxlength="45"/>
 
                         <p:outputLabel value="#{myBundle.EditUsuariosLabel_sexo}" for="sexo" />
                         <p:inputText id="sexo" value="#{usuariosController.selected.sexo}" title="#{myBundle.EditUsuariosTitle_sexo}" size="1" maxlength="1"/>
 
                         <p:outputLabel value="#{myBundle.EditUsuariosLabel_telefono}" for="telefono" />
-                        <p:inputText id="telefono" value="#{usuariosController.selected.telefono}" title="#{myBundle.EditUsuariosTitle_telefono}" size="128" maxlength="128"/>
+                        <p:inputText id="telefono" value="#{usuariosController.selected.telefono}" title="#{myBundle.EditUsuariosTitle_telefono}" size="45" maxlength="45"/>
 
                         <p:outputLabel value="#{myBundle.EditUsuariosLabel_correo}" for="correo" />
-                        <p:inputText id="correo" value="#{usuariosController.selected.correo}" title="#{myBundle.EditUsuariosTitle_correo}" size="128" maxlength="128"/>
+                        <p:inputText id="correo" value="#{usuariosController.selected.correo}" title="#{myBundle.EditUsuariosTitle_correo}" size="45" maxlength="45"/>
 
                         <p:outputLabel value="#{myBundle.EditUsuariosLabel_esAdministrador}" for="esAdministrador" />
                         <p:inputText id="esAdministrador" value="#{usuariosController.selected.esAdministrador}" title="#{myBundle.EditUsuariosTitle_esAdministrador}"/>

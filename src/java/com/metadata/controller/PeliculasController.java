@@ -3,7 +3,12 @@ package com.metadata.controller;
 import com.metadata.prueba.Peliculas;
 import com.metadata.facade.PeliculasFacade;
 import com.metadata.controller.util.MobilePageController;
+import com.metadata.facade.GeneroFacade;
+import com.metadata.facade.UsuariosFacade;
+import com.metadata.prueba.Genero;
 import com.metadata.prueba.Usuarios;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.faces.event.ActionEvent;
@@ -21,6 +26,10 @@ public class PeliculasController extends AbstractController<Peliculas> {
     private MobilePageController mobilePageController;
     @Inject
     private LoginController loginController;
+    @Inject 
+    private UsuariosFacade usuariosFacade;
+    @Inject 
+    private GeneroFacade generoFacade;
 
     public PeliculasController() {
         // Inform the Abstract parent controller of the concrete Peliculas Entity
@@ -69,6 +78,22 @@ public class PeliculasController extends AbstractController<Peliculas> {
             pelicula.setIdUsuario(usuario);
         }
         super.saveNew(event);
+    }
+    
+    public List<String> getUsuarios(){
+        List<String> nombre = new ArrayList<>();
+        usuariosFacade.findAll().forEach((usuario) -> {
+            nombre.add(usuario.getNombre());
+        });
+        return nombre;
+    }
+    
+    public List<String> getGeneros(){
+        List<String> nombre = new ArrayList<>();
+        generoFacade.findAll().forEach((genero) -> {
+            nombre.add(genero.getNombre());
+        });
+        return nombre;
     }
 
 }

@@ -15,9 +15,6 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{peliculasController.selected != null}">
 
-                        <h:outputText value="#{myBundle.ViewPeliculasLabel_idPelicula}"/>
-                        <h:outputText value="#{peliculasController.selected.idPelicula}" title="#{myBundle.ViewPeliculasTitle_idPelicula}"/>
-
                         <h:outputText value="#{myBundle.ViewPeliculasLabel_nombre}"/>
                         <h:outputText value="#{peliculasController.selected.nombre}" title="#{myBundle.ViewPeliculasTitle_nombre}"/>
 

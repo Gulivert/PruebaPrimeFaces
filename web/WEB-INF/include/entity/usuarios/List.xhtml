@@ -10,10 +10,10 @@
 
         <p:panel header="#{myBundle.ListUsuariosTitle}">
             <p:contextMenu id="UsuariosDataTableContextMenu" for="datalist">  
-                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('UsuariosListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem rendered="#{(loginController.user != null) and (loginController.user.esAdministrador == 1)}"  value="#{myBundle.Create}" onclick="document.getElementById('UsuariosListForm:createButton').click();" icon="ui-icon-plus"/>
                 <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('UsuariosListForm:viewButton').click();" icon="ui-icon-search"/>
-                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('UsuariosListForm:editButton').click();" icon="ui-icon-pencil"/>
-                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('UsuariosListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:menuitem rendered="#{(loginController.user != null) and (loginController.user.esAdministrador == 1)}"  value="#{myBundle.Edit}" onclick="document.getElementById('UsuariosListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem rendered="#{(loginController.user != null) and (loginController.user.esAdministrador == 1)}"  value="#{myBundle.Delete}" onclick="document.getElementById('UsuariosListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
                 <p:menuitem value="#{myBundle.UsuariosMenuItem_peliculasCollection}" icon="ui-icon-search"  action="#{usuariosController.navigatePeliculasCollection}" disabled="#{usuariosController.isPeliculasCollectionEmpty}" ajax="false"/>  
             </p:contextMenu>
@@ -43,7 +43,7 @@
                 <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('UsuariosListForm:viewButton').click();"/>
 
-                <p:column sortBy="#{item.id}" filterBy="#{item.id}">
+                <p:column rendered="false" sortBy="#{item.id}" filterBy="#{item.id}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListUsuariosTitle_id}"/>
                     </f:facet>
@@ -125,10 +125,10 @@
 
             </p:dataTable>
 
-            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{usuariosController.prepareCreate}" update=":UsuariosCreateForm" oncomplete="PF('UsuariosCreateDialog').show()"/>
-            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":UsuariosViewForm" oncomplete="PF('UsuariosViewDialog').show()" disabled="#{empty usuariosController.selected}"/>
-            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":UsuariosEditForm" oncomplete="PF('UsuariosEditDialog').show()" disabled="#{empty usuariosController.selected}"/>
-            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{usuariosController.delete}" update=":growl,datalist" disabled="#{empty usuariosController.selected}">
+            <p:commandButton rendered="#{(loginController.user != null) and (loginController.user.esAdministrador == 1)}"  id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{usuariosController.prepareCreate}" update=":UsuariosCreateForm" oncomplete="PF('UsuariosCreateDialog').show()"/>
+            <p:commandButton id="viewButton"  icon="ui-icon-search" value="#{myBundle.View}" update=":UsuariosViewForm" oncomplete="PF('UsuariosViewDialog').show()" disabled="#{empty usuariosController.selected}"/>
+            <p:commandButton rendered="#{(loginController.user != null) and (loginController.user.esAdministrador == 1)}"  id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":UsuariosEditForm" oncomplete="PF('UsuariosEditDialog').show()" disabled="#{empty usuariosController.selected}"/>
+            <p:commandButton rendered="#{(loginController.user != null) and (loginController.user.esAdministrador == 1)}"  id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{usuariosController.delete}" update=":growl,datalist" disabled="#{empty usuariosController.selected}">
                 <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 

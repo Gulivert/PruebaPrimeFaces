@@ -15,9 +15,6 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{generoController.selected != null}">
 
-                        <h:outputText value="#{myBundle.ViewGeneroLabel_idGenero}"/>
-                        <h:outputText value="#{generoController.selected.idGenero}" title="#{myBundle.ViewGeneroTitle_idGenero}"/>
-
                         <h:outputText value="#{myBundle.ViewGeneroLabel_nombre}"/>
                         <h:outputText value="#{generoController.selected.nombre}" title="#{myBundle.ViewGeneroTitle_nombre}"/>
                     </p:panelGrid>

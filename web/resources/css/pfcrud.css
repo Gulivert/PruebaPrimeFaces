@@ -20,3 +20,11 @@
     font-weight: bold;
     background-color: menu;
 }
+
+.ui-menu .ui-menu-parent .ui-menu-child {
+    width:240px !important;
+}
+.ui-button-text-only, .ui-button-text-icon-left {
+    margin-right: 10px;
+    margin-top: 10px;
+}

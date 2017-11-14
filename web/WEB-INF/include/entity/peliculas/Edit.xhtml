@@ -14,12 +14,8 @@
                 <h:panelGroup id="display">
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{peliculasController.selected != null}">
 
-
-                        <h:outputLabel value="#{myBundle.EditPeliculasLabel_idPelicula}" for="idPelicula" />
-                        <h:outputText id="idPelicula" value="#{peliculasController.selected.idPelicula}" />
-
                         <p:outputLabel value="#{myBundle.EditPeliculasLabel_nombre}" for="nombre" />
-                        <p:inputText id="nombre" value="#{peliculasController.selected.nombre}" title="#{myBundle.EditPeliculasTitle_nombre}" size="128" maxlength="128"/>
+                        <p:inputText id="nombre" value="#{peliculasController.selected.nombre}" title="#{myBundle.EditPeliculasTitle_nombre}" size="45" maxlength="45"/>
 
                         <p:outputLabel value="#{myBundle.EditPeliculasLabel_descripcion}" for="descripcion" />
                         <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{peliculasController.selected.descripcion}" title="#{myBundle.EditPeliculasTitle_descripcion}" />
@@ -38,11 +34,10 @@
                                            itemValue="#{idGeneroItem}"
                                            itemLabel="#{idGeneroItem.nombre}"
                                            />
-
                         </p:selectOneMenu>
 
-                        <p:outputLabel value="#{myBundle.EditPeliculasLabel_nombreUsuario}" for="idUsuario" />
-                        <p:selectOneMenu id="idUsuario" value="#{peliculasController.selected.idUsuario}" required="true" requiredMessage="#{myBundle.EditPeliculasRequiredMessage_idUsuario}" converter="usuariosConverter">
+                        <p:outputLabel rendered="#{loginController.user.esAdministrador == 1}" value="#{myBundle.EditPeliculasLabel_nombreUsuario}" for="idUsuario" />
+                        <p:selectOneMenu rendered="#{loginController.user.esAdministrador == 1}" id="idUsuario" value="#{peliculasController.selected.idUsuario}" required="true" requiredMessage="#{myBundle.EditPeliculasRequiredMessage_idUsuario}" converter="usuariosConverter">
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                             <f:selectItems value="#{usuariosController.items}"
                                            var="idUsuarioItem"

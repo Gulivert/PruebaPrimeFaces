@@ -15,9 +15,6 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{usuariosController.selected != null}">
 
-                        <h:outputText value="#{myBundle.ViewUsuariosLabel_id}"/>
-                        <h:outputText value="#{usuariosController.selected.id}" title="#{myBundle.ViewUsuariosTitle_id}"/>
-
                         <h:outputText value="#{myBundle.ViewUsuariosLabel_usuario}"/>
                         <h:outputText value="#{usuariosController.selected.usuario}" title="#{myBundle.ViewUsuariosTitle_usuario}"/>
 

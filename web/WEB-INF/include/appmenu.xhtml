@@ -10,14 +10,18 @@
         <h:form id="menuForm">
             <p:menubar>
                 <p:menuitem value="#{myBundle.Home}" outcome="/index" icon="ui-icon-home"/>
-                <p:submenu label="#{myBundle.Maintenance}">
-                    <p:menuitem value="#{myBundle.PeliculasHeading}..." outcome="/app/peliculas/index" />
-                    <p:menuitem value="#{myBundle.UsuariosHeading}..." outcome="/app/usuarios/index" />
+                <p:submenu rendered="#{loginController.user != null}" label="#{myBundle.Maintenance}">
+                    <p:menuitem icon="ui-icon-arrowthick-1-e" value="#{myBundle.PeliculasHeading}..." outcome="/app/peliculas/index" />
+                    <p:menuitem icon="ui-icon-arrowthick-1-e" rendered="#{loginController.user.esAdministrador == 1}" value="#{myBundle.UsuariosHeading}..." outcome="/app/usuarios/index" />
+                    <p:menuitem icon="ui-icon-arrowthick-1-e" rendered="#{loginController.user.esAdministrador == 1}" value="#{myBundle.GeneroHeading}..." outcome="/app/genero/index" />
                 </p:submenu>
-                <p:menuitem id="loginClass" rendered="#{loginController.user == null}" value="#{myBundle.LoginName}" outcome="/login" icon="ui-icon-person" />
-                <f:facet name="options">
-                    <p:commandButton rendered="#{loginController.user != null}" actionListener="#{loginController.logout}" id="iconOnly" icon="ui-icon-person" title="LogOut" />
-                </f:facet>
+                <p:menuitem rendered="#{loginController.user == null}" class="login" actionListener="#{loginController.redirectLogin}" icon="ui-icon-person" value="LogIn"/>
+                <p:submenu rendered="#{loginController.user != null}" class="logout" label="#{loginController.user.nombre}">
+                    <p:menuitem disabled="true" icon="ui-icon-clock" value="Ultimo acceso a las #{loginController.hora}"/>
+                    <p:menuitem disabled="true" icon="ui-icon-plus" rendered="#{loginController.user.esAdministrador == 1}" value="Usuarios que han realizado acceso: #{applicationController.numeroLogueados}"/>
+                    <p:menuitem icon="ui-icon-person" value="Logout"  actionListener="#{loginController.logout}"/>
+                </p:submenu>
+
             </p:menubar>
         </h:form>
     </ui:composition>

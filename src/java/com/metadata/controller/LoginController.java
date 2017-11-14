@@ -18,6 +18,7 @@ import javax.enterprise.inject.spi.CDI;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -26,8 +27,10 @@ import org.primefaces.context.RequestContext;
 @Named(value = "loginController")
 @SessionScoped
 public class LoginController implements Serializable {
-
-    private static int numUser = 0;
+    
+    @Inject
+    ApplicationController applicationController;
+    
     private UsuariosFacade ejbFacade;
 
     private static final long serialVersionUID = -2152389656664659476L;
@@ -65,14 +68,6 @@ public class LoginController implements Serializable {
         this.clave = clave;
     }
 
-    public static int getNumUser() {
-        return numUser;
-    }
-
-    public static void setNumUser(int numUser) {
-        LoginController.numUser = numUser;
-    }
-
     public String getHora() {
         return hora;
     }
@@ -93,6 +88,10 @@ public class LoginController implements Serializable {
         
         redirectToUrl("/index.xhtml");
     }
+    
+    public void redirectLogin (ActionEvent actionEvent) {
+        redirectToUrl("/login.xhtml");
+    }
 
     public void redirectToUrl(String file) {
         //Recuperamos la ruta para redirigir
@@ -112,18 +111,17 @@ public class LoginController implements Serializable {
         FacesMessage msg = null;
         ejbFacade = CDI.current().select(UsuariosFacade.class).get();
         Usuarios user = ejbFacade.findByLogin(nombre, clave);
+        
+        //Comprobamos si existe el usuario
         if (user != null) {
             this.user=user;
             logeado = true;
-            numUser++;
+            //Incrementamos el numero de usarios logueados desde que se arranco la aplicacion
+            applicationController.incrementarNumeroLogueados();
             msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@", user.getNombre());
-//            FacesContext context2 = FacesContext.getCurrentInstance();
-//            HttpSession session = (HttpSession) context2.getExternalContext().getSession(true);
-//            session.setAttribute("userName", user.getNombre());
             Calendar cal = Calendar.getInstance();
             SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
             hora = sdf.format(cal.getTime());
-            //Aumentamos el numero de
             redirectToUrl("/index.xhtml");
         } else {
             logeado = false;

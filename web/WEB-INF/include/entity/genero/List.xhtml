@@ -43,7 +43,7 @@
                 <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('GeneroListForm:viewButton').click();"/>
 
-                <p:column sortBy="#{item.idGenero}" filterBy="#{item.idGenero}">
+                <p:column rendered="false" sortBy="#{item.idGenero}" filterBy="#{item.idGenero}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListGeneroTitle_idGenero}"/>
                     </f:facet>
@@ -62,9 +62,9 @@
             </p:dataTable>
 
             <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{generoController.prepareCreate}" update=":GeneroCreateForm" oncomplete="PF('GeneroCreateDialog').show()"/>
-            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":GeneroViewForm" oncomplete="PF('GeneroViewDialog').show()" disabled="#{empty generoController.selected}"/>
-            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":GeneroEditForm" oncomplete="PF('GeneroEditDialog').show()" disabled="#{empty generoController.selected}"/>
-            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{generoController.delete}" update=":growl,datalist" disabled="#{empty generoController.selected}">
+            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":GeneroViewForm" oncomplete="PF('GeneroViewDialog').show()" disabled="#{empty generoController.selected}"/>
+            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":GeneroEditForm" oncomplete="PF('GeneroEditDialog').show()" disabled="#{empty generoController.selected}"/>
+            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{generoController.delete}" update=":growl,datalist" disabled="#{empty generoController.selected}">
                 <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 
