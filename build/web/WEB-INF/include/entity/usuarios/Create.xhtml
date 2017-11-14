@@ -16,10 +16,10 @@
                     <p:panelGrid columns="2" columnClasses="column">
 
                         <p:outputLabel value="#{myBundle.CreateUsuariosLabel_usuario}" for="usuario" />
-                        <p:inputText id="usuario" value="#{usuariosController.selected.usuario}" title="#{myBundle.CreateUsuariosTitle_usuario}" size="45" maxlength="45"/>
+                        <p:inputText id="usuario" value="#{usuariosController.selected.usuario}" title="#{myBundle.CreateUsuariosTitle_usuario}" size="45" maxlength="45" required="true"/>
 
                         <p:outputLabel value="#{myBundle.CreateUsuariosLabel_password}" for="password" />
-                        <p:password id="password" value="#{usuariosController.selected.password}" title="#{myBundle.CreateUsuariosTitle_password}" size="45" maxlength="45"/>
+                        <p:password id="password" value="#{usuariosController.selected.password}" title="#{myBundle.CreateUsuariosTitle_password}" size="45" maxlength="45" required="true"/>
 
                         <p:outputLabel value="#{myBundle.CreateUsuariosLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{usuariosController.selected.nombre}" title="#{myBundle.CreateUsuariosTitle_nombre}" size="45" maxlength="45"/>
@@ -32,7 +32,7 @@
 
                         <p:outputLabel value="#{myBundle.CreateUsuariosLabel_sexo}" for="sexo" />
                         <p:selectOneMenu id="sexo" value="#{usuariosController.selected.sexo}">
-                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}" itemValue="" />
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}" itemValue="" noSelectionOption="true" />
                             <f:selectItem itemLabel="#{myBundle.Hombre}" itemValue="#{myBundle.H}" />
                             <f:selectItem itemLabel="#{myBundle.Mujer}" itemValue="#{myBundle.M}" />
                         </p:selectOneMenu>
@@ -44,8 +44,8 @@
                         <p:inputText id="correo" value="#{usuariosController.selected.correo}" title="#{myBundle.CreateUsuariosTitle_correo}" size="45" maxlength="45"/>
 
                         <p:outputLabel value="#{myBundle.CreateUsuariosLabel_esAdministrador}" for="esAdministrador" />
-                        <p:selectOneMenu id="esAdministrador" value="#{usuariosController.selected.esAdministrador}">
-                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}" itemValue="" />
+                        <p:selectOneMenu id="esAdministrador" value="#{usuariosController.selected.esAdministrador}" required="true">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}" itemValue=""  noSelectionOption="true"/>
                             <f:selectItem itemLabel="#{myBundle.Yes}" itemValue="1" />
                             <f:selectItem itemLabel="#{myBundle.No}" itemValue="0" />
                         </p:selectOneMenu>

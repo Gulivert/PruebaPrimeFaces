@@ -15,7 +15,7 @@
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{peliculasController.selected != null}">
 
                         <p:outputLabel value="#{myBundle.EditPeliculasLabel_nombre}" for="nombre" />
-                        <p:inputText id="nombre" value="#{peliculasController.selected.nombre}" title="#{myBundle.EditPeliculasTitle_nombre}" size="45" maxlength="45"/>
+                        <p:inputText id="nombre" value="#{peliculasController.selected.nombre}" title="#{myBundle.EditPeliculasTitle_nombre}" size="45" maxlength="45" required="true"/>
 
                         <p:outputLabel value="#{myBundle.EditPeliculasLabel_descripcion}" for="descripcion" />
                         <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{peliculasController.selected.descripcion}" title="#{myBundle.EditPeliculasTitle_descripcion}" />
@@ -24,11 +24,11 @@
                         <p:calendar id="fechaVisualizacion" pattern="MM/dd/yyyy" value="#{peliculasController.selected.fechaVisualizacion}" title="#{myBundle.EditPeliculasTitle_fechaVisualizacion}"  showOn="button"/>
 
                         <p:outputLabel value="#{myBundle.EditPeliculasLabel_nota}" for="nota" />
-                        <p:inputText id="nota" value="#{peliculasController.selected.nota}" title="#{myBundle.EditPeliculasTitle_nota}"/>
+                        <p:inputText id="nota" value="#{peliculasController.selected.nota}" title="#{myBundle.EditPeliculasTitle_nota}" required="true"/>
 
                         <p:outputLabel value="#{myBundle.EditPeliculasLabel_nombreGenero}" for="idGenero" />
                         <p:selectOneMenu id="idGenero" value="#{peliculasController.selected.idGenero}" required="true" requiredMessage="#{myBundle.EditPeliculasRequiredMessage_idGenero}" converter="generoConverter">
-                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}" noSelectionOption="true"/>
                             <f:selectItems value="#{generoController.items}"
                                            var="idGeneroItem"
                                            itemValue="#{idGeneroItem}"
@@ -38,7 +38,7 @@
 
                         <p:outputLabel rendered="#{loginController.user.esAdministrador == 1}" value="#{myBundle.EditPeliculasLabel_nombreUsuario}" for="idUsuario" />
                         <p:selectOneMenu rendered="#{loginController.user.esAdministrador == 1}" id="idUsuario" value="#{peliculasController.selected.idUsuario}" required="true" requiredMessage="#{myBundle.EditPeliculasRequiredMessage_idUsuario}" converter="usuariosConverter">
-                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}" noSelectionOption="true"/>
                             <f:selectItems value="#{usuariosController.items}"
                                            var="idUsuarioItem"
                                            itemValue="#{idUsuarioItem}"
