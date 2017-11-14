@@ -19,7 +19,7 @@
                         <p:inputText id="usuario" value="#{usuariosController.selected.usuario}" title="#{myBundle.CreateUsuariosTitle_usuario}" size="45" maxlength="45"/>
 
                         <p:outputLabel value="#{myBundle.CreateUsuariosLabel_password}" for="password" />
-                        <p:inputText id="password" value="#{usuariosController.selected.password}" title="#{myBundle.CreateUsuariosTitle_password}" size="45" maxlength="45"/>
+                        <p:password id="password" value="#{usuariosController.selected.password}" title="#{myBundle.CreateUsuariosTitle_password}" size="45" maxlength="45"/>
 
                         <p:outputLabel value="#{myBundle.CreateUsuariosLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{usuariosController.selected.nombre}" title="#{myBundle.CreateUsuariosTitle_nombre}" size="45" maxlength="45"/>
@@ -31,16 +31,25 @@
                         <p:inputText id="apellido2" value="#{usuariosController.selected.apellido2}" title="#{myBundle.CreateUsuariosTitle_apellido2}" size="45" maxlength="45"/>
 
                         <p:outputLabel value="#{myBundle.CreateUsuariosLabel_sexo}" for="sexo" />
-                        <p:inputText id="sexo" value="#{usuariosController.selected.sexo}" title="#{myBundle.CreateUsuariosTitle_sexo}" size="1" maxlength="1"/>
-
+                        <p:selectOneMenu id="sexo" value="#{usuariosController.selected.sexo}">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}" itemValue="" />
+                            <f:selectItem itemLabel="#{myBundle.Hombre}" itemValue="#{myBundle.H}" />
+                            <f:selectItem itemLabel="#{myBundle.Mujer}" itemValue="#{myBundle.M}" />
+                        </p:selectOneMenu>
+                        
                         <p:outputLabel value="#{myBundle.CreateUsuariosLabel_telefono}" for="telefono" />
-                        <p:inputText id="telefono" value="#{usuariosController.selected.telefono}" title="#{myBundle.CreateUsuariosTitle_telefono}" size="45" maxlength="45"/>
+                        <p:inputMask id="telefono" value="#{usuariosController.selected.telefono}" title="#{myBundle.CreateUsuariosTitle_telefono}" size="45" maxlength="45" mask="999999999"/>
 
                         <p:outputLabel value="#{myBundle.CreateUsuariosLabel_correo}" for="correo" />
                         <p:inputText id="correo" value="#{usuariosController.selected.correo}" title="#{myBundle.CreateUsuariosTitle_correo}" size="45" maxlength="45"/>
 
                         <p:outputLabel value="#{myBundle.CreateUsuariosLabel_esAdministrador}" for="esAdministrador" />
-                        <p:inputText id="esAdministrador" value="#{usuariosController.selected.esAdministrador}" title="#{myBundle.CreateUsuariosTitle_esAdministrador}"/>
+                        <p:selectOneMenu id="esAdministrador" value="#{usuariosController.selected.esAdministrador}">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}" itemValue="" />
+                            <f:selectItem itemLabel="#{myBundle.Yes}" itemValue="1" />
+                            <f:selectItem itemLabel="#{myBundle.No}" itemValue="0" />
+                        </p:selectOneMenu>
+                        
                     </p:panelGrid>
                     <p:commandButton actionListener="#{usuariosController.saveNew}" value="#{myBundle.Save}" update="display,:UsuariosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('UsuariosCreateDialog'));">
                         <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>

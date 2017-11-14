@@ -120,7 +120,7 @@ public class LoginController implements Serializable {
             applicationController.incrementarNumeroLogueados();
             msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@", user.getNombre());
             Calendar cal = Calendar.getInstance();
-            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
             hora = sdf.format(cal.getTime());
             redirectToUrl("/index.xhtml");
         } else {

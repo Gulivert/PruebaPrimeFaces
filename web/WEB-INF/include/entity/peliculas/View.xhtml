@@ -30,10 +30,10 @@
                         <h:outputText value="#{peliculasController.selected.nota}" title="#{myBundle.ViewPeliculasTitle_nota}"/>
 
                         <h:outputText value="#{myBundle.ViewPeliculasLabel_idGenero}"/>
-                        <h:outputText value="#{peliculasController.selected.idGenero.idGenero}"/>
+                        <h:outputText value="#{peliculasController.selected.idGenero.nombre}"/>
 
                         <h:outputText value="#{myBundle.ViewPeliculasLabel_idUsuario}"/>
-                        <h:outputText value="#{peliculasController.selected.idUsuario.id}"/>
+                        <h:outputText value="#{peliculasController.selected.idUsuario.nombre}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{myBundle.Close}" onclick="PF('PeliculasViewDialog').hide()"/>
                 </h:panelGroup>

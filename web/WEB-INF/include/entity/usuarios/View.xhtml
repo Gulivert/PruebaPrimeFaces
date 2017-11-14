@@ -31,7 +31,7 @@
                         <h:outputText value="#{usuariosController.selected.apellido2}" title="#{myBundle.ViewUsuariosTitle_apellido2}"/>
 
                         <h:outputText value="#{myBundle.ViewUsuariosLabel_sexo}"/>
-                        <h:outputText value="#{usuariosController.selected.sexo}" title="#{myBundle.ViewUsuariosTitle_sexo}"/>
+                        <h:outputText value="#{usuariosController.selected.sexo == myBundle.H ? myBundle.Hombre: myBundle.Mujer}" title="#{myBundle.ViewUsuariosTitle_sexo}"/>
 
                         <h:outputText value="#{myBundle.ViewUsuariosLabel_telefono}"/>
                         <h:outputText value="#{usuariosController.selected.telefono}" title="#{myBundle.ViewUsuariosTitle_telefono}"/>
@@ -40,7 +40,7 @@
                         <h:outputText value="#{usuariosController.selected.correo}" title="#{myBundle.ViewUsuariosTitle_correo}"/>
 
                         <h:outputText value="#{myBundle.ViewUsuariosLabel_esAdministrador}"/>
-                        <h:outputText value="#{usuariosController.selected.esAdministrador}" title="#{myBundle.ViewUsuariosTitle_esAdministrador}"/>
+                        <h:outputText value="#{usuariosController.selected.esAdministrador == 1 ? myBundle.Yes: myBundle.No}" title="#{myBundle.ViewUsuariosTitle_esAdministrador}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{myBundle.Close}" onclick="PF('UsuariosViewDialog').hide()"/>
                 </h:panelGroup>

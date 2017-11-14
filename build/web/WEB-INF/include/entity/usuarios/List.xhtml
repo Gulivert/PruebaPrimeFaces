@@ -24,6 +24,7 @@
                          var="item"
                          paginator="true"
                          rows="10"
+                         widgetVar="tablaUsuarios"
                          rowsPerPageTemplate="10,20,30,40,50"
                          selectionMode="single"
                          selection="#{usuariosController.selected}"
@@ -90,38 +91,44 @@
                     <h:outputText value="#{item.apellido2}"/>
                 </p:column>
 
-                <ui:remove>
-                    <p:column sortBy="#{item.sexo}" filterBy="#{item.sexo}">
-                        <f:facet name="header">
-                            <h:outputText value="#{myBundle.ListUsuariosTitle_sexo}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.sexo}"/>
-                    </p:column>
-                </ui:remove>
-                <ui:remove>
-                    <p:column sortBy="#{item.telefono}" filterBy="#{item.telefono}">
-                        <f:facet name="header">
-                            <h:outputText value="#{myBundle.ListUsuariosTitle_telefono}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.telefono}"/>
-                    </p:column>
-                </ui:remove>
-                <ui:remove>
-                    <p:column sortBy="#{item.correo}" filterBy="#{item.correo}">
-                        <f:facet name="header">
-                            <h:outputText value="#{myBundle.ListUsuariosTitle_correo}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.correo}"/>
-                    </p:column>
-                </ui:remove>
-                <ui:remove>
-                    <p:column sortBy="#{item.esAdministrador}" filterBy="#{item.esAdministrador}">
-                        <f:facet name="header">
-                            <h:outputText value="#{myBundle.ListUsuariosTitle_esAdministrador}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.esAdministrador}"/>
-                    </p:column>
-                </ui:remove>
+                <p:column sortBy="#{item.sexo}" filterBy="#{item.sexo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListUsuariosTitle_sexo}"/>
+                    </f:facet>
+                    <f:facet name="filter">
+                        <p:selectOneMenu onchange="PF('tablaUsuarios').filter()" >
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}" itemValue="" noSelectionOption="true" />
+                            <f:selectItem itemLabel="#{myBundle.Hombre}" itemValue="#{myBundle.H}" />
+                            <f:selectItem itemLabel="#{myBundle.Mujer}" itemValue="#{myBundle.M}" />
+                        </p:selectOneMenu>
+                    </f:facet>
+                    <h:outputText value="#{item.sexo == myBundle.H ? myBundle.Hombre: myBundle.Mujer}"/>
+                </p:column>
+                <p:column sortBy="#{item.telefono}" filterBy="#{item.telefono}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListUsuariosTitle_telefono}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.telefono}"/>
+                </p:column>
+                <p:column sortBy="#{item.correo}" filterBy="#{item.correo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListUsuariosTitle_correo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.correo}"/>
+                </p:column>
+                <p:column sortBy="#{item.esAdministrador}" filterBy="#{item.esAdministrador}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListUsuariosTitle_esAdministrador}"/>
+                    </f:facet>
+                    <f:facet name="filter">
+                        <p:selectOneMenu onchange="PF('tablaUsuarios').filter()" >
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}" itemValue="" />
+                            <f:selectItem itemLabel="#{myBundle.Yes}" itemValue="1" />
+                            <f:selectItem itemLabel="#{myBundle.No}" itemValue="0" />
+                        </p:selectOneMenu>
+                    </f:facet>
+                    <h:outputText value="#{item.esAdministrador == 1 ? myBundle.Yes: myBundle.No}" />
+                </p:column>
 
             </p:dataTable>
 

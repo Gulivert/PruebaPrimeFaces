@@ -21,6 +21,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.hibernate.validator.constraints.Email;
 
 /**
  *
@@ -63,6 +64,7 @@ public class Usuarios implements Serializable {
     @Size(max = 128)
     private String telefono;
     @Size(max = 128)
+    @Email(message = "Correo no valido")
     private String correo;
     @Column(name = "es_administrador")
     private Short esAdministrador;

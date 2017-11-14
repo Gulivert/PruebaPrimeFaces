@@ -30,16 +30,24 @@
                         <p:inputText id="apellido2" value="#{usuariosController.selected.apellido2}" title="#{myBundle.EditUsuariosTitle_apellido2}" size="45" maxlength="45"/>
 
                         <p:outputLabel value="#{myBundle.EditUsuariosLabel_sexo}" for="sexo" />
-                        <p:inputText id="sexo" value="#{usuariosController.selected.sexo}" title="#{myBundle.EditUsuariosTitle_sexo}" size="1" maxlength="1"/>
+                        <p:selectOneMenu id="sexo" value="#{usuariosController.selected.sexo}">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}" itemValue="" />
+                            <f:selectItem itemLabel="#{myBundle.Hombre}" itemValue="#{myBundle.H}" />
+                            <f:selectItem itemLabel="#{myBundle.Mujer}" itemValue="#{myBundle.M}" />
+                        </p:selectOneMenu>
 
                         <p:outputLabel value="#{myBundle.EditUsuariosLabel_telefono}" for="telefono" />
-                        <p:inputText id="telefono" value="#{usuariosController.selected.telefono}" title="#{myBundle.EditUsuariosTitle_telefono}" size="45" maxlength="45"/>
+                        <p:inputMask id="telefono" value="#{usuariosController.selected.telefono}" title="#{myBundle.EditUsuariosTitle_telefono}" size="45" maxlength="45" mask="999999999"/>
 
                         <p:outputLabel value="#{myBundle.EditUsuariosLabel_correo}" for="correo" />
                         <p:inputText id="correo" value="#{usuariosController.selected.correo}" title="#{myBundle.EditUsuariosTitle_correo}" size="45" maxlength="45"/>
 
                         <p:outputLabel value="#{myBundle.EditUsuariosLabel_esAdministrador}" for="esAdministrador" />
-                        <p:inputText id="esAdministrador" value="#{usuariosController.selected.esAdministrador}" title="#{myBundle.EditUsuariosTitle_esAdministrador}"/>
+                        <p:selectOneMenu id="esAdministrador" value="#{usuariosController.selected.esAdministrador}">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}" itemValue="" />
+                            <f:selectItem itemLabel="#{myBundle.Yes}" itemValue="1" />
+                            <f:selectItem itemLabel="#{myBundle.No}" itemValue="0" />
+                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{usuariosController.save}" value="#{myBundle.Save}" update="display,:UsuariosListForm:datalist,:UsuariosListForm:UsuariosDataTableContextMenu,:growl" oncomplete="handleSubmit(xhr,status,args,PF('UsuariosEditDialog'));">
                         <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>

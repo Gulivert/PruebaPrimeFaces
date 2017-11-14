@@ -93,7 +93,7 @@
                     </f:facet>
                     <f:facet name="filter">
                         <p:selectOneMenu onchange="PF('tablaPeliculas').filter()" >
-                            <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true" />
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}" itemValue="#{null}" noSelectionOption="true" />
                             <f:selectItems value="#{peliculasController.generos}" />
                         </p:selectOneMenu>
                     </f:facet>
@@ -107,7 +107,7 @@
                     </f:facet>
                     <f:facet name="filter">
                         <p:selectOneMenu onchange="PF('tablaPeliculas').filter()" >
-                            <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true" />
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}" itemValue="#{null}" noSelectionOption="true" />
                             <f:selectItems value="#{peliculasController.usuarios}" />
                         </p:selectOneMenu>
                     </f:facet>
