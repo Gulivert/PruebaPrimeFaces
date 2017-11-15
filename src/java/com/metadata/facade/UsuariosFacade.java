@@ -52,7 +52,13 @@ public class UsuariosFacade extends AbstractFacade<Usuarios> {
         peliculasCollection.size();
         return peliculasCollection;
     }
-
+    
+    /**
+     * Busca usuarios por sus parametros de login
+     * @param user
+     * @param pass
+     * @return 
+     */
     public Usuarios findByLogin(String user, String pass) {
         Map<String, Object> condiciones = new HashMap<>();
         condiciones.put("usuario", user);

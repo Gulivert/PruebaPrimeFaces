@@ -75,7 +75,11 @@ public class LoginController implements Serializable {
     public void setHora(String hora) {
         this.hora = hora;
     }
-
+    
+    /**
+     * Desloguea a un usuarios
+     * @param actionEvent 
+     */
     public void logout(ActionEvent actionEvent) {
         
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sesion cerrada", nombre);
@@ -89,10 +93,18 @@ public class LoginController implements Serializable {
         redirectToUrl("/index.xhtml");
     }
     
+    /**
+     * Redirige a un usuario a la pagina de login
+     * @param actionEvent 
+     */
     public void redirectLogin (ActionEvent actionEvent) {
         redirectToUrl("/login.xhtml");
     }
-
+    
+    /**
+     * Redirige a la pagina @file
+     * @param file 
+     */
     public void redirectToUrl(String file) {
         //Recuperamos la ruta para redirigir
         HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
@@ -105,7 +117,11 @@ public class LoginController implements Serializable {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    /**
+     * Loguea a un usuario en el sistema
+     * @param actionEvent 
+     */
     public void login(ActionEvent actionEvent) {
         RequestContext context = RequestContext.getCurrentInstance();
         FacesMessage msg = null;
@@ -132,12 +148,5 @@ public class LoginController implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, msg);
         context.addCallbackParam("estaLogeado", logeado);
                 
-    }
-
-    public void logout() {
-        HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
-                .getExternalContext().getSession(false);
-        session.invalidate();
-        logeado = false;
     }
 }
